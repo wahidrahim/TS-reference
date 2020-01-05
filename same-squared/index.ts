@@ -8,14 +8,18 @@ import assert from 'assert'
  *******************************************************************************
  */
 
+interface FrequencyTable {
+  [key: string]: number
+}
+
 /**
  * Refactored and optimized solution
  *
  * O(n)
  */
 function same(arr1: number[], arr2: number[]) {
-  const arr1NumFrequency: { [key: string]: number } = {}
-  const arr2NumFrequency: { [key: string]: number } = {}
+  const arr1NumFrequency: FrequencyTable = {}
+  const arr2NumFrequency: FrequencyTable = {}
 
   /**
    * Record the frequency of each numbers in `arr1`
