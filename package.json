@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "ts": "ts-node"
+    "test": "ts-node"
   },
   "dependencies": {
     "@types/node": "^13.1.4",
