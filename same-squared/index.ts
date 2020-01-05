@@ -9,22 +9,38 @@ import assert from 'assert'
  */
 
 /**
+ * Refactored and optimized solution
+ *
  * O(n)
  */
 function same(arr1: number[], arr2: number[]) {
   const arr1NumFrequency: { [key: string]: number } = {}
   const arr2NumFrequency: { [key: string]: number } = {}
 
-  // O(n)
+  /**
+   * Record the frequency of each numbers in `arr1`
+   * O(n)
+   */
   arr1.map(n => (arr1NumFrequency[n] = (arr1NumFrequency[n] || 0) + 1))
-  // O(n)
+  /**
+   * Record the frequency of each numbers in `arr2`
+   * O(n)
+   */
   arr2.map(n => (arr2NumFrequency[n] = (arr2NumFrequency[n] || 0) + 1))
 
   // O(n)
   for (const key in arr1NumFrequency) {
     const keySquared = Number(key) ** 2
 
+    /**
+     * Return false if the square of `key` does not exist
+     * as a key in `arr2NumFrequency`
+     */
     if (!(keySquared in arr2NumFrequency)) return false
+    /**
+     * Return false if the value (frequency) of `arr1NumFrequency[key]`
+     * does not equal value (frequency) of `arr2NumFrequency[keySquared]`
+     */
     if (arr1NumFrequency[key] !== arr2NumFrequency[keySquared]) return false
   }
 
@@ -40,14 +56,18 @@ function same(arr1: number[], arr2: number[]) {
   // Both arrays would have to be equal length
   if (arr1.length !== arr2.length) return false
 
+  // O(n)
   for (const n of arr1) {
+
     // Index of the squared number from arr1 in arr2
-    const nSquaredIndex = arr2.indexOf(n * n) // O(n)
+    // O(n)
+    const nSquaredIndex = arr2.indexOf(n * n)
 
     if (nSquaredIndex === -1) return false
 
     // If the squared number exists in arr2, remove it from arr2
-    arr2.splice(nSquaredIndex, 1) // O(n)
+    // O(n)
+    arr2.splice(nSquaredIndex, 1)
   }
 
   return true
