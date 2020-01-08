@@ -19,6 +19,10 @@ class SinglyLinkedList {
     this.length = 0
   }
 
+  /**
+   * Add to the end of list
+   * @param value
+   */
   push<T>(value: T) {
     const newNode = new ListNode(value)
 
@@ -37,6 +41,9 @@ class SinglyLinkedList {
     return this
   }
 
+  /**
+   * Remove from the end of list
+   */
   pop() {
     if (!this.head) return undefined
 
@@ -53,7 +60,7 @@ class SinglyLinkedList {
     this.length--
 
     // List should be empty
-    if (!this.length) {
+    if (this.length === 0) {
       this.head = null
       this.tail = null
     }
@@ -61,6 +68,28 @@ class SinglyLinkedList {
     return currentNode
   }
 
+  /**
+   * Remove from the begining of list
+   */
+  shift() {
+    if (!this.head) return undefined
+
+    const currentHead = this.head
+
+    this.head = currentHead.next
+    this.length--
+
+    // List should be empty
+    if (this.length === 0) {
+      this.tail = null
+    }
+
+    return currentHead
+  }
+
+  /**
+   * Print list
+   */
   traverse() {
     let currentNode = this.head
 
@@ -77,7 +106,8 @@ linkedList.push('hi')
 linkedList.push(1)
 linkedList.push('hellooo!')
 
-console.log(linkedList.pop())
-console.log(linkedList.pop())
-console.log(linkedList.pop())
+console.log(linkedList.shift())
+console.log(linkedList.shift())
+console.log(linkedList.shift())
+
 console.log(linkedList)
