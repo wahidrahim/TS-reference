@@ -108,6 +108,22 @@ class SinglyLinkedList {
   }
 
   /**
+   * Get the node at a given index
+   * @param index
+   */
+  get(index: number) {
+    if (index <= 0 || index >= this.length) return null
+
+    let currentNode = this.head
+
+    for (let i = 1; i < index; i++) {
+      currentNode = currentNode!.next
+    }
+
+    return currentNode
+  }
+
+  /**
    * Print list
    */
   traverse() {
@@ -122,9 +138,12 @@ class SinglyLinkedList {
 
 const ll = new SinglyLinkedList()
 
-ll.unshift('last')
-ll.unshift('middle')
-ll.unshift('first')
-ll.traverse()
+ll.push('first')
+ll.push('middle')
+ll.push('another one')
+ll.push('another oneeee')
+ll.push('last')
+
+console.log(ll.get(4))
 
 // console.log(ll)
