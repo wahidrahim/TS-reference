@@ -123,6 +123,17 @@ class SinglyLinkedList {
     return currentNode
   }
 
+  set<T>(value: T, index: number) {
+    const nodeAtIndex = this.get(index)
+
+    if (nodeAtIndex) {
+      nodeAtIndex.value = value
+      return true
+    }
+
+    return false
+  }
+
   /**
    * Print list
    */
@@ -144,6 +155,11 @@ ll.push('another one')
 ll.push('another oneeee')
 ll.push('last')
 
+ll.traverse()
+
+ll.set('changed', 4)
+
 console.log(ll.get(4))
 
+ll.traverse()
 // console.log(ll)
