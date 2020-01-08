@@ -69,6 +69,26 @@ class SinglyLinkedList {
   }
 
   /**
+   * Add to the begining of list
+   * @param value
+   */
+  unshift<T>(value: T) {
+    const newNode = new ListNode(value)
+
+    if (!this.length) {
+      this.head = newNode
+      this.tail = newNode
+    } else {
+      newNode.next = this.head
+      this.head = newNode
+    }
+
+    this.length++
+
+    return this
+  }
+
+  /**
    * Remove from the begining of list
    */
   shift() {
@@ -94,20 +114,17 @@ class SinglyLinkedList {
     let currentNode = this.head
 
     while (currentNode) {
-      console.log(currentNode.value)
+      console.log(currentNode?.value)
       currentNode = currentNode.next
     }
   }
 }
 
-const linkedList = new SinglyLinkedList()
+const ll = new SinglyLinkedList()
 
-linkedList.push('hi')
-linkedList.push(1)
-linkedList.push('hellooo!')
+ll.unshift('last')
+ll.unshift('middle')
+ll.unshift('first')
+ll.traverse()
 
-console.log(linkedList.shift())
-console.log(linkedList.shift())
-console.log(linkedList.shift())
-
-console.log(linkedList)
+// console.log(ll)
