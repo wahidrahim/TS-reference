@@ -140,12 +140,17 @@ class SinglyLinkedList {
    * @param index
    */
   insert<T>(value: T, index: number) {
-    if (index < 0 && index > this.length) {
+    // Trying to insert out of bounds
+    if (index < 0 || index > this.length) {
       return false
     }
+
+    // Inserting at the beginning
     if (index === 0) {
       return !!this.unshift(value)
     }
+
+    // Inserting at the end
     if (index === this.length) {
       return !!this.push(value)
     }
@@ -163,6 +168,36 @@ class SinglyLinkedList {
   }
 
   /**
+   * Removes a node from the `index` position
+   * @param index
+   */
+  remove(index: number) {
+    // Trying to remove from out of bounds
+    if (index < 0 || index > this.length) {
+      return undefined
+    }
+
+    // Remove from the beginning
+    if (index === 0) {
+      return this.shift()
+    }
+
+    // Remove from the end
+    if (index === this.length - 1) {
+      return this.pop()
+    }
+
+    const prevNode = this.get(index - 1)
+    const deleteNode = this.get(index)
+
+    prevNode!.next = deleteNode!.next
+
+    this.length--
+
+    return deleteNode
+  }
+
+  /**
    * Print list
    */
   traverse() {
@@ -176,3 +211,21 @@ class SinglyLinkedList {
 }
 
 const ll = new SinglyLinkedList()
+
+ll.push(1)
+ll.push(2)
+ll.push(3)
+
+ll.traverse()
+console.log('---')
+ll.remove(1)
+ll.traverse()
+console.log('---')
+ll.remove(1)
+ll.traverse()
+console.log('---')
+ll.remove(0)
+ll.traverse()
+console.log('---')
+ll.remove(0)
+ll.traverse()
