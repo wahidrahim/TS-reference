@@ -69,6 +69,25 @@ class SinglyLinkedList {
   }
 
   /**
+   * Remove from the begining of list
+   */
+  shift() {
+    if (!this.head) return undefined
+
+    const currentHead = this.head
+
+    this.head = currentHead.next
+    this.length--
+
+    // List should be empty
+    if (this.length === 0) {
+      this.tail = null
+    }
+
+    return currentHead
+  }
+
+  /**
    * Add to the begining of list
    * @param value
    */
@@ -89,34 +108,15 @@ class SinglyLinkedList {
   }
 
   /**
-   * Remove from the begining of list
-   */
-  shift() {
-    if (!this.head) return undefined
-
-    const currentHead = this.head
-
-    this.head = currentHead.next
-    this.length--
-
-    // List should be empty
-    if (this.length === 0) {
-      this.tail = null
-    }
-
-    return currentHead
-  }
-
-  /**
    * Get the node at a given index
    * @param index
    */
   get(index: number) {
-    if (index <= 0 || index >= this.length) return null
+    if (index < 0 || index > this.length) return null
 
     let currentNode = this.head
 
-    for (let i = 1; i < index; i++) {
+    for (let i = 1; i <= index; i++) {
       currentNode = currentNode!.next
     }
 
@@ -135,6 +135,34 @@ class SinglyLinkedList {
   }
 
   /**
+   * Insert a node at `index` position
+   * @param value
+   * @param index
+   */
+  insert<T>(value: T, index: number) {
+    if (index < 0 && index > this.length) {
+      return false
+    }
+    if (index === 0) {
+      return !!this.unshift(value)
+    }
+    if (index === this.length) {
+      return !!this.push(value)
+    }
+
+    const newNode = new ListNode(value)
+    const prevNode = this.get(index - 1)
+    const nextNode = prevNode!.next
+
+    prevNode!.next = newNode
+    newNode.next = nextNode
+
+    this.length++
+
+    return true
+  }
+
+  /**
    * Print list
    */
   traverse() {
@@ -148,18 +176,3 @@ class SinglyLinkedList {
 }
 
 const ll = new SinglyLinkedList()
-
-ll.push('first')
-ll.push('middle')
-ll.push('another one')
-ll.push('another oneeee')
-ll.push('last')
-
-ll.traverse()
-
-ll.set('changed', 4)
-
-console.log(ll.get(4))
-
-ll.traverse()
-// console.log(ll)
