@@ -197,10 +197,30 @@ class SinglyLinkedList {
     return deleteNode
   }
 
+  reverse() {
+    let currentNode = this.head
+
+    this.head = this.tail
+    this.tail = currentNode
+
+    let prevNode = null
+    let nextNode = undefined
+
+    for (let i = 0; i < this.length; i++) {
+      nextNode = currentNode!.next
+      currentNode!.next = prevNode
+      prevNode = currentNode
+      nextNode = nextNode!.next
+      console.log(this)
+    }
+
+    return this
+  }
+
   /**
    * Print list
    */
-  traverse() {
+  print() {
     let currentNode = this.head
 
     while (currentNode) {
@@ -215,17 +235,8 @@ const ll = new SinglyLinkedList()
 ll.push(1)
 ll.push(2)
 ll.push(3)
+ll.push(4)
+ll.push(5)
 
-ll.traverse()
-console.log('---')
-ll.remove(1)
-ll.traverse()
-console.log('---')
-ll.remove(1)
-ll.traverse()
-console.log('---')
-ll.remove(0)
-ll.traverse()
-console.log('---')
-ll.remove(0)
-ll.traverse()
+ll.reverse()
+ll.print()
