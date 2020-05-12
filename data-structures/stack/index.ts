@@ -35,6 +35,18 @@ namespace StackDataStructure {
 
       return ++this.size;
     }
+
+    print() {
+      let currentNode = this.first;
+      let stringPrint = '\n';
+
+      while (currentNode) {
+        stringPrint += `${currentNode.value}\n`;
+        currentNode = currentNode.next;
+      }
+
+      return stringPrint;
+    }
   }
 }
 
