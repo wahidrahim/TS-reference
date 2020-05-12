@@ -1,15 +1,13 @@
-namespace StackDataStructure {
+namespace QueueDataStructure {
   class Node {
-    value: any;
     next: Node | null;
 
-    constructor(value: any) {
-      this.value = value;
+    constructor(public value: any) {
       this.next = null;
     }
   }
 
-  export class Stack {
+  export class Queue {
     first: Node | null;
     last: Node | null;
     size: number;
@@ -20,12 +18,12 @@ namespace StackDataStructure {
       this.size = 0;
     }
 
-    push(value: any) {
+    enqueue(value: any) {
       const newNode = new Node(value);
 
-      if (this.first) {
-        newNode.next = this.first;
-        this.first = newNode;
+      if (this.last) {
+        this.last.next = newNode;
+        this.last = newNode;
       } else {
         this.first = newNode;
         this.last = newNode;
@@ -34,7 +32,7 @@ namespace StackDataStructure {
       return ++this.size;
     }
 
-    pop() {
+    dequeue() {
       if (!this.first) {
         return null;
       }
@@ -49,6 +47,7 @@ namespace StackDataStructure {
       }
 
       --this.size;
+
       return prevFirst.value;
     }
 
@@ -58,16 +57,16 @@ namespace StackDataStructure {
       }
 
       let currentNode = this.first;
-      let stringPrint = '\n';
+      let printString = '';
 
       while (currentNode) {
-        stringPrint += `${currentNode.value}\n`;
+        printString += `${currentNode.value} `;
         currentNode = currentNode.next;
       }
 
-      return stringPrint;
+      return printString;
     }
   }
 }
 
-export default StackDataStructure.Stack;
+export default QueueDataStructure.Queue;
