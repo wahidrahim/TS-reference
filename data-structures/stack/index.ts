@@ -36,7 +36,30 @@ namespace StackDataStructure {
       return ++this.size;
     }
 
+    pop() {
+      if (!this.first) {
+        return null;
+      }
+
+      const prevFirst = this.first;
+
+      if (this.size === 1) {
+        this.first = null;
+        this.last = null;
+      } else {
+        this.first = this.first.next;
+      }
+
+      --this.size;
+
+      return prevFirst.value;
+    }
+
     print() {
+      if (!this.size) {
+        return null;
+      }
+
       let currentNode = this.first;
       let stringPrint = '\n';
 
