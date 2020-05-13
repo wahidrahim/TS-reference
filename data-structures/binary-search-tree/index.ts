@@ -78,6 +78,26 @@ class BST {
 
     return recursivePrint(this.root);
   }
+
+  /**
+   * Get array in a breadth-first order
+   */
+  toBFArray() {
+    if (!this.root) {
+      return [];
+    }
+
+    const array = [];
+    const queue: Node[] = [];
+
+    queue.push(this.root);
+
+    while (queue.length) {
+      const node = queue.shift()
+
+      // array.push(node.value);
+    }
+  }
 }
 
 export default BST;

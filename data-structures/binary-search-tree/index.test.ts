@@ -87,4 +87,17 @@ describe('Binary Search Tree', () => {
 
     expect(bst.print()).toMatch('3, 5, 9, 10, 11, 13');
   });
+
+  test('print values in breadth-first order', () => {
+    const bst = new BST();
+
+    bst.insert(11);
+    bst.insert(13);
+    bst.insert(5);
+    bst.insert(9);
+    bst.insert(10);
+    bst.insert(3);
+
+    expect(bst.toBFArray()).toEqual([11, 5, 13, 3, 9, 10]);
+  });
 });
