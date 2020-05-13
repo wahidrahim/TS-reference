@@ -1,9 +1,9 @@
 class Node {
-  value: any;
+  value: number;
   left?: Node;
   right?: Node;
 
-  constructor(value: any) {
+  constructor(value: number) {
     this.value = value;
   }
 }
@@ -11,10 +11,10 @@ class Node {
 class BST {
   root?: Node;
 
-  insert(value: any) {
+  insert(value: number) {
     const newNode = new Node(value);
 
-    const recursiveInsert = (node: Node, rootNode: Node) => {
+    const recursiveInsert = (node: Node, rootNode?: Node) => {
       if (!rootNode) {
         return node;
       }
@@ -31,6 +31,25 @@ class BST {
     this.root = recursiveInsert(newNode, this.root);
 
     return this;
+  }
+
+  contains(value: number) {
+    const recursiveContains = (rootNode?: Node): boolean => {
+      if (!rootNode) {
+        return false;
+      } else if (value === rootNode.value) {
+        return true;
+      } else if (value < rootNode.value) {
+        return recursiveContains(rootNode.left);
+      } else if (value > rootNode.value) {
+        return recursiveContains(rootNode.right);
+      }
+
+      // Should be unreachable
+      return false;
+    };
+
+    return recursiveContains(this.root);
   }
 }
 
