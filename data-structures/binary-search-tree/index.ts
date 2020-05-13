@@ -45,11 +45,38 @@ class BST {
         return recursiveContains(rootNode.right);
       }
 
-      // Should be unreachable
       return false;
     };
 
     return recursiveContains(this.root);
+  }
+
+  toArrayInOrder() {
+    const recursivePrint = (node?: Node): number[] => {
+      if (!node) {
+        return [];
+      }
+
+      return [
+        ...recursivePrint(node.left),
+        node.value,
+        ...recursivePrint(node.right),
+      ];
+    };
+
+    return recursivePrint(this.root);
+  }
+
+  print() {
+    const recursivePrint = (node?: Node): string => {
+      if (!node) {
+        return '';
+      }
+
+      return `${recursivePrint(node.left)}${node.value}, ${recursivePrint(node.right)}`
+    }
+
+    return recursivePrint(this.root);
   }
 }
 

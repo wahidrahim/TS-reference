@@ -1,7 +1,7 @@
 import BST from '.';
 
 describe('Binary Search Tree', () => {
-  test('Inserting values', () => {
+  test('inserting values', () => {
     const bst = new BST();
 
     bst.insert(5);
@@ -54,5 +54,37 @@ describe('Binary Search Tree', () => {
     expect(bst.contains(-3)).toBe(false);
     expect(bst.contains(0)).toBe(false);
     expect(bst.contains(432)).toBe(false);
+  });
+
+  test('get array of values in-order', () => {
+    const bst = new BST();
+
+    bst.insert(11);
+    bst.insert(13);
+    bst.insert(5);
+    bst.insert(9);
+    bst.insert(10);
+    bst.insert(3);
+
+    expect(bst.toArrayInOrder()).toEqual([3, 5, 9, 10, 11, 13]);
+  });
+
+  test('get empty array', () => {
+    const bst = new BST();
+
+    expect(bst.toArrayInOrder()).toEqual([]);
+  });
+
+  test('print values in order', () => {
+    const bst = new BST();
+
+    bst.insert(11);
+    bst.insert(13);
+    bst.insert(5);
+    bst.insert(9);
+    bst.insert(10);
+    bst.insert(3);
+
+    expect(bst.print()).toMatch('3, 5, 9, 10, 11, 13');
   });
 });
